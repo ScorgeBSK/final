@@ -11,15 +11,22 @@
 #include "timer.h"
 #include "usart.h"
 
-enum States {off, on} state;
+enum States {off, on, waitReleaseOn, waitReleaseOff} state;
 unsigned char led = 0;
 void tick(){
+	unsigned char button = ~PINA & 0x01;
 	switch(state){
 		case off:
-			state = on;
+			state = button ? waitReleaseOn : off;
+			break;
+		case waitReleaseOn:
+			state = button ? waitReleaseOn : on;
 			break;
 		case on:
-			state = off;
+			state = button ? waitReleaseOff : on;
+			break;
+		case waitReleaseOff:
+			state = button ? waitReleaseOff : off;
 			break;
 		default:
 			state = off;
@@ -28,16 +35,20 @@ void tick(){
 
 	switch(state){
 		case off:
-			if(USART0_HasReceived()){
-				led = USART0_Receive();
-				USART0_Flush();
+			led = 0;
+			if(USART0_IsSendReady()){
+				USART0_Send(led);
 			}
 			break;
+		case waitReleaseOn:
+			break;
 		case on:
-			if(USART0_HasReceived()){
-				led = USART0_Receive();
-				USART0_Flush();
+			led = 1;
+			if(USART0_IsSendReady()){
+				USART0_Send(led);
 			}
+			break;
+		case waitReleaseOff:
 			break;
 		default:
 			break;
@@ -49,11 +60,12 @@ void tick(){
 
 int main(void) {
     /* Insert DDR and PORT initializations */
-    DDRB = 0xFF; PORTB = 0x00;
+    	DDRA = 0x00; PORTA = 0xFF;
+	DDRB = 0xFF; PORTB = 0x00;
 
     initUSART0();
 
-    TimerSet(50);
+    TimerSet(100);
     TimerOn();
 
     /* Insert your solution below */
