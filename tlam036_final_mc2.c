@@ -14,7 +14,6 @@
 enum States {on} state;
 unsigned char led = 0;
 void tick(){
-
 	switch(state){
 		case on:
 		      state = on;
