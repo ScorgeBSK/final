@@ -28,15 +28,15 @@ void tick(){
 
 	switch(state){
 		case off:
-			if(USART0_HasReceived()){
-				led = USART0_Receive();
-				USART0_Flush();
+			led = 0;
+			if(USART0_IsSendReady()){
+				USART0_Send(led);
 			}
 			break;
 		case on:
-			if(USART0_HasReceived()){
-				led = USART0_Receive();
-				USART0_Flush();
+			led = 1;
+			if(USART0_IsSendReady()){
+				USART0_Send(led);
 			}
 			break;
 		default:
