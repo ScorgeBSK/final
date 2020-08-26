@@ -8,11 +8,9 @@
  *	code, is my own original work.
  */
 #include <avr/io.h>
-#include <avr/usart_ATmega1284.h>
 #ifdef _SIMULATE_
-#include "simAVRHeader.h"
-#include "usart.h"
 #include "timer.h"
+#include "usart.h"
 #endif
 
 enum States {off, on} state;
