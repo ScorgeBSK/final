@@ -44,7 +44,7 @@ void PWM_off() {
 enum States {off, on} state;
 
 const double notes[8] = {261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25};
-unsigned char i = 0;
+
 void tick(){
 
 	switch(state){
@@ -64,22 +64,14 @@ void tick(){
 			PWM_off();
 			break;
 		case on:
-			PWM_on();
 			if(USART0_HasReceived()){
-				if(USART0_Receive() != 0){
-					i = USART0_Receive() - 1;			
-				}
-				else{
-					PWM_off();
-				}
+				set_PWM(notes[USART0_Receive() - 1]);
 				USART0_Flush();
 			}
 			break;
 		default:
 			break;
 	}
-
-	set_PWM(notes[i]);
 
 }
 
@@ -88,7 +80,7 @@ int main(void) {
     DDRB = 0xFF; PORTB = 0x00;
 
     initUSART0();
-    PWM_on();
+
     /* Insert your solution below */
     while (1) {
     	tick();
