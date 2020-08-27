@@ -1,7 +1,7 @@
 /*	Author: Trung Lam
  *  Partner(s) Name: 
  *	Lab Section:
- *	Assignment: Final Project  Exercise #1
+ *	Assignment: Final Project  Exercise #1 (Primary Microcontroller)
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
@@ -31,8 +31,8 @@ void tick(){
 	switch(state){
 		case off:
 			led = 0;
-			if(USART0_IsSendReady()){
-				USART0_Send(led);
+			if(USART0_IsSendReady()){	//checks if USART is ready to send
+				USART0_Send(led);	//Sends the value of led to the receiver
 			}
 			break;
 		case on:
