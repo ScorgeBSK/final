@@ -46,7 +46,7 @@ int main(void) {
 
     initUSART0();
 
-    TimerSet(50);
+    TimerSet(1000);
     TimerOn();
 
     /* Insert your solution below */
