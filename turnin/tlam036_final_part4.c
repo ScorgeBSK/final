@@ -1,7 +1,7 @@
-/*	Author: lab
+/*	Author: Trung Lam
  *  Partner(s) Name: 
  *	Lab Section:
- *	Assignment: Lab #  Exercise #
+ *	Assignment: Final Project  Exercise #4 (Primary Microcontroller)
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
@@ -12,9 +12,9 @@
 #include "usart.h"
 
 enum States {init, waitReleaseOn, playSeq, playSeqR, playBlink, waitReleaseOff} state;
-const char sequence[4] = {0x01, 0x02, 0x04, 0x08};
-const char seqReverse[4] = {0x08, 0x04, 0x02, 0x01};
-const char blinkingSeq[2] = {0x0F, 0x00};
+const char sequence[4] = {0x01, 0x02, 0x04, 0x08};	//First Sequence
+const char seqReverse[4] = {0x08, 0x04, 0x02, 0x01};	//Second Sequence
+const char blinkingSeq[2] = {0x0F, 0x00};		//Third Sequence
 unsigned char led = 0;
 unsigned char i = 0;
 unsigned char j = 0;
