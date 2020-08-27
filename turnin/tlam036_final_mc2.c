@@ -1,7 +1,7 @@
-/*	Author: lab
+/*	Author: Trung Lam
  *  Partner(s) Name: 
  *	Lab Section:
- *	Assignment: Lab #  Exercise #
+ *	Assignment: Final Project  Exercise #1 (Secondary Microcontroller)
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
@@ -28,9 +28,9 @@ void tick(){
 
 	switch(state){
 		case off:
-			if(USART0_HasReceived()){
-				led = USART0_Receive();
-				USART0_Flush();
+			if(USART0_HasReceived()){             	//checks if USART has received a value
+				led = USART0_Receive();		//sets led to the received value
+				USART0_Flush();			//resets USART
 			}
 			break;
 		case on:
