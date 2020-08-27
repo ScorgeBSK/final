@@ -1,7 +1,7 @@
-/*	Author: lab
+/*	Author: Trung Lam
  *  Partner(s) Name: 
  *	Lab Section:
- *	Assignment: Lab #  Exercise #
+ *	Assignment: Final Project  Exercise #1
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
@@ -13,7 +13,9 @@
 
 enum States {off, on} state;
 unsigned char led = 0;
-void tick(){
+
+//state machine for a toggle LED
+void tick(){                        
 	switch(state){
 		case off:
 			state = on;
@@ -51,8 +53,10 @@ int main(void) {
     /* Insert DDR and PORT initializations */
     DDRB = 0xFF; PORTB = 0x00;
 
+    //initializing USART0
     initUSART0();
 
+    //Setting timer to tick every 1 second
     TimerSet(1000);
     TimerOn();
 
