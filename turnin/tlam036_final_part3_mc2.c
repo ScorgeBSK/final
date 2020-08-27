@@ -1,7 +1,7 @@
-/*	Author: lab
+/*	Author: Trung Lam
  *  Partner(s) Name: 
  *	Lab Section:
- *	Assignment: Lab #  Exercise #
+ *	Assignment: Final Project Exercise #3 (Secondary Microcontroller)
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
